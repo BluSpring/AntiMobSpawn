@@ -38,7 +38,7 @@ public class ConfigManager {
         this.name = name;
         this.spec = spec;
 
-        this.config = new ModConfig(this.type, this.spec, this.owner, this.name);
+        this.config = new ModConfig(this.type, this.spec, this.owner.getMetadata().getId(), this.name);
     }
 
     public ConfigManager open () {
