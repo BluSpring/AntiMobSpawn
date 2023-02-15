@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "xyz.bluspring.antimobspawn.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "EntityTypeMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

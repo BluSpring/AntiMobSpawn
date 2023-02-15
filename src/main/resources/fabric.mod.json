@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "antimobspawn",
+  "version": "${version}",
+  "name": "AntiMobSpawn",
+  "description": "Disallow specific mobs from spawning naturally.",
+  "authors": [
+    "BluSpring"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/antimobspawn/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "xyz.bluspring.antimobspawn.AntiMobSpawn"
+    ],
+    "modmenu": [
+      "xyz.bluspring.antimobspawn.ModMenuIntegration"
+    ],
+    "client": [
+      "xyz.bluspring.antimobspawn.client.AntiMobSpawnClient"
+    ]
+  },
+  "mixins": [
+    "AntiMobSpawn.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.13",
+    "fabric": "*",
+    "minecraft": ">=1.19",
+    "forgeconfigapiport": "*",
+    "modmenu": "*",
+    "cloth-config": ">=8",
+    "architectury": ">=6"
+  }
+}
