@@ -22,7 +22,7 @@ public class Configuration {
         final ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
 
         for (final EntityType<?> type : BuiltInRegistries.ENTITY_TYPE) {
-            this.configs.put(type, new SpawnConfig(Objects.requireNonNull(Registries.ENTITY_TYPE.registry()), builder));
+            this.configs.put(type, new SpawnConfig(Objects.requireNonNull(BuiltInRegistries.ENTITY_TYPE.getKey(type)), builder));
         }
 
         this.manager = new ConfigManager(builder.build());
