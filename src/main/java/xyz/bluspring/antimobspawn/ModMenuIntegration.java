@@ -75,7 +75,7 @@ public class ModMenuIntegration implements ModMenuApi {
                                 .build()
                 );
 
-                var location = Registries.ENTITY_TYPE.registry();
+                var location = BuiltInRegistries.ENTITY_TYPE.getKey(entityType);
 
                 perModSubCategories.computeIfAbsent(
                         location.getNamespace(),
