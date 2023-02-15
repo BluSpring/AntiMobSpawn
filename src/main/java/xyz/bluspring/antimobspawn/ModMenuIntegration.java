@@ -6,6 +6,8 @@ import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.impl.builders.SubCategoryBuilder;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
 
@@ -26,7 +28,7 @@ public class ModMenuIntegration implements ModMenuApi {
             var category = builder.getOrCreateCategory(Component.literal(""));
             var perModSubCategories = new HashMap<String, SubCategoryBuilder>();
 
-            for (EntityType<?> entityType : Registry.ENTITY_TYPE) {
+            for (EntityType<?> entityType : BuiltInRegistries.ENTITY_TYPE) {
                 var spawnConfig = AntiMobSpawn.config.configs.get(entityType);
                 if (spawnConfig == null)
                     continue;
@@ -73,7 +75,7 @@ public class ModMenuIntegration implements ModMenuApi {
                                 .build()
                 );
 
-                var location = Registry.ENTITY_TYPE.getKey(entityType);
+                var location = Registries.ENTITY_TYPE.registry();
 
                 perModSubCategories.computeIfAbsent(
                         location.getNamespace(),
