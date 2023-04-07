@@ -19,7 +19,7 @@ public class AntiMobSpawn implements ModInitializer {
             }
         });
 
-        ServerLifecycleEvents.SERVER_STARTED.register((server) -> {
+        ServerLifecycleEvents.SERVER_STARTING.register((server) -> {
             if (config == null)
                 config = new Configuration();
         });
