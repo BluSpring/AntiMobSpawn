@@ -2,9 +2,7 @@ package xyz.bluspring.antimobspawn.config;
 
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
-import net.minecraftforge.api.ModLoadingContext;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.fml.config.ConfigTracker;
 import net.minecraftforge.fml.config.ModConfig;
 
 public class ConfigManager {

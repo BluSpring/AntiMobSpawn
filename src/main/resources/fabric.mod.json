@@ -28,10 +28,10 @@
   "depends": {
     "fabricloader": ">=0.14.13",
     "fabric": "*",
-    "minecraft": ">=1.19.3",
-    "forgeconfigapiport": ">=5.0.0",
+    "minecraft": ">=1.20",
+    "forgeconfigapiport": ">=7.0.0",
     "modmenu": "*",
-    "cloth-config": ">=9",
-    "architectury": ">=6"
+    "cloth-config": ">=11",
+    "architectury": ">=9"
   }
 }
