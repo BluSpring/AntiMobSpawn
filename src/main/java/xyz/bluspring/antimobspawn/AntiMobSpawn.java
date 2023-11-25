@@ -5,6 +5,7 @@ import dev.architectury.event.events.common.EntityEvent;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.world.entity.Entity;
 import xyz.bluspring.antimobspawn.config.Configuration;
 
@@ -13,6 +14,10 @@ public class AntiMobSpawn implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        if (!FabricLoader.getInstance().isModLoaded("connectormod") && !FabricLoader.getInstance().isModLoaded("forgeconfigapiport")) {
+            throw new IllegalStateException("ForgeConfigAPIPort is not installed!");
+        }
+
         ServerEntityEvents.ENTITY_LOAD.register((entity, world) -> {
             if (!config.allowSpawn(entity, null)) {
                 entity.remove(Entity.RemovalReason.DISCARDED);
