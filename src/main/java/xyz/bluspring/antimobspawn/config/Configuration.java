@@ -4,9 +4,9 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobSpawnType;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,7 +19,7 @@ public class Configuration {
 
     public Configuration() {
 
-        final ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+        final ModConfigSpec.Builder builder = new ModConfigSpec.Builder();
 
         for (final EntityType<?> type : BuiltInRegistries.ENTITY_TYPE) {
             this.configs.put(type, new SpawnConfig(Objects.requireNonNull(BuiltInRegistries.ENTITY_TYPE.getKey(type)), builder));
@@ -30,7 +30,7 @@ public class Configuration {
         this.manager.open();
     }
 
-    public boolean allowSpawn (Entity entity, MobSpawnType reason) {
+    public boolean allowSpawn (Entity entity, EntitySpawnReason reason) {
 
         final SpawnConfig config = this.configs.get(entity.getType());
 

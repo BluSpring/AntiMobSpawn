@@ -1,37 +1,38 @@
 package xyz.bluspring.antimobspawn.config;
 
+import fuzs.forgeconfigapiport.fabric.api.v5.ConfigRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
-import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.fml.config.ConfigTracker;
-import net.minecraftforge.fml.config.IConfigSpec;
-import net.minecraftforge.fml.config.ModConfig;
+import net.neoforged.fml.config.ConfigTracker;
+import net.neoforged.fml.config.IConfigSpec;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class ConfigManager {
     private final ModContainer owner;
     private final ModConfig.Type type;
     private final String name;
-    private final ForgeConfigSpec spec;
+    private final ModConfigSpec spec;
     public final ModConfig config;
 
     private boolean forgeRegistered = false;
 
-    public ConfigManager(ForgeConfigSpec spec) {
+    public ConfigManager(ModConfigSpec spec) {
 
         this(ModConfig.Type.COMMON, spec);
     }
 
-    public ConfigManager(ModConfig.Type type, ForgeConfigSpec spec) {
+    public ConfigManager(ModConfig.Type type, ModConfigSpec spec) {
 
         this(FabricLoader.getInstance().getModContainer("antimobspawn").get(), type, spec);
     }
 
-    public ConfigManager(ModContainer owner, ModConfig.Type type, ForgeConfigSpec spec) {
+    public ConfigManager(ModContainer owner, ModConfig.Type type, ModConfigSpec spec) {
 
         this(owner, type, defaultConfigName(type, owner.getMetadata().getId()), spec);
     }
 
-    public ConfigManager(ModContainer owner, ModConfig.Type type, String name, ForgeConfigSpec spec) {
+    public ConfigManager(ModContainer owner, ModConfig.Type type, String name, ModConfigSpec spec) {
 
         this.owner = owner;
         this.type = type;
@@ -40,7 +41,7 @@ public class ConfigManager {
 
         if (!FabricLoader.getInstance().isModLoaded("connectormod")) {
             // ForgeConfigAPIPort
-            this.config = new ModConfig(this.type, this.spec, this.owner.getMetadata().getId(), this.name);
+            this.config = ConfigTracker.INSTANCE.registerConfig(this.type, this.spec, this.owner.getMetadata().getId(), this.name);
         } else {
             // Forge + Connector
             try {

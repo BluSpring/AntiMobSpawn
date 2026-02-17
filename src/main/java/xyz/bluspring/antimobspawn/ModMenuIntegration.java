@@ -10,6 +10,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
+import net.neoforged.fml.config.ConfigTracker;
 
 import java.util.HashMap;
 
@@ -22,7 +23,9 @@ public class ModMenuIntegration implements ModMenuApi {
                     .setTitle(Component.literal("AntiMobSpawn Config"));
 
             builder.setSavingRunnable(() -> {
-                AntiMobSpawn.config.manager.config.save();
+                var config = AntiMobSpawn.config.manager.config.getLoadedConfig();
+                if (config == null) return;
+                config.save();
             });
 
             var category = builder.getOrCreateCategory(Component.literal(""));
