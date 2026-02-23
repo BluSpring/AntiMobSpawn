@@ -45,6 +45,10 @@ public class SpawnConfig {
             return false;
         }
 
+        if (reason == EntitySpawnReason.LOAD) {
+            return !this.removeAggressively.get();
+        }
+
         if (reason == EntitySpawnReason.SPAWNER) {
 
             return this.allowSpawners.get();

@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntitySpawnReason;
 import xyz.bluspring.antimobspawn.config.Configuration;
 
 public class AntiMobSpawn implements ModInitializer {
@@ -19,7 +20,7 @@ public class AntiMobSpawn implements ModInitializer {
         }
 
         ServerEntityEvents.ENTITY_LOAD.register((entity, world) -> {
-            if (!config.allowSpawn(entity, null)) {
+            if (!config.allowSpawn(entity, EntitySpawnReason.LOAD)) {
                 entity.remove(Entity.RemovalReason.DISCARDED);
             }
         });
@@ -39,7 +40,7 @@ public class AntiMobSpawn implements ModInitializer {
         });
 
         EntityEvent.ADD.register((entity, world) -> {
-            if (!config.allowSpawn(entity, null)) {
+            if (!config.allowSpawn(entity, EntitySpawnReason.LOAD)) {
                 entity.remove(Entity.RemovalReason.DISCARDED);
                 return EventResult.interruptFalse();
             }
